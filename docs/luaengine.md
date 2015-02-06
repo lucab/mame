@@ -2,17 +2,17 @@
 
 ## Introduction
 
-Initial work of exposing a scripting interface to externally
-drive MAME started in version 0.148, when a minimal luaengine
+It is possible to externally drive MAME via LUA scripts. 
+This feature initially appeared in version 0.148, when a minimal `luaengine`
 was implemented. Nowadays, the LUA interface is rich enough
 to let you inspect and manipulate devices state, access cpu 
 registers, read and write memory, and draw a custom HUD on screen.
 However, it is still far from complete and the API is still
 subject to changes.
 
-Internally, MAME makes extensive use of 'luabridge' to implement
+Internally, MAME makes extensive use of `luabridge` to implement
 this feature: the idea is to transparently expose as many of 
-the internal classes as possible.
+the useful internals as possible.
 
 ## Usage
 
@@ -28,13 +28,11 @@ override the default with the `-autoboot_delay` argument
 
 ## Quick walktrough
 
-Before starting, a warning on breaking changes: LUA API is not yet
-declared stable and may suddenly change without prior notice.
+First, a warning: LUA API is not yet declared stable and may 
+suddenly change without prior notice.
 However, we expose methods to let you know at runtime which API 
 version you are running against, and you can introspect most of the
 objects at runtime.
-
-First
 
 ## API Reference
 
