@@ -108,9 +108,36 @@ machine:
 :saveram
 :screen
 :palette
+[...]
 ```
 
 On some of them, you can also inspect and manipulate memory and state:
+```
+> cpu = manager:machine().devices[":maincpu"]
+> -- enumerate, read and write state registers
+> for i,v in pairs(cpu.state) do print(i) end
+D5
+SP
+A4
+A3
+D0
+PC
+[...]
+> print(cpu.state["D0"].value)
+303
+> cpu.state["D0"].value = 255
+> print(cpu.state["D0"].value)
+255
+```
+
+```
+> -- inspect memory
+> for i,v in pairs(cpu.spaces) do print(i) end
+program
+> mem = cpu.spaces["program"] 
+> print(mem:read_i8(0xC000))
+41
+```
 
 ## API Reference
 
