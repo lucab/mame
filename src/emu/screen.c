@@ -92,6 +92,30 @@ screen_device::~screen_device()
 
 
 //-------------------------------------------------
+//  ui_aspect - return the aspect ratio for UI
+//  fonts
+//-------------------------------------------------
+
+float screen_device::ui_aspect()
+{
+	int orient = container().orientation();
+
+	// based on the orientation of the target, compute height/width or width/height
+	float aspect;
+	if (!(orient & ORIENTATION_SWAP_XY))
+		aspect = (float)visible_area().height() / (float)visible_area().width();
+	else
+		aspect = (float)visible_area().width() / (float)visible_area().height();
+
+	// clamp for extreme proportions
+	if (aspect < 0.66f)
+		aspect = 0.66f;
+	if (aspect > 1.5f)
+		aspect = 1.5f;
+	return aspect;
+}
+
+//-------------------------------------------------
 //  static_set_type - configuration helper
 //  to set the screen type
 //-------------------------------------------------
